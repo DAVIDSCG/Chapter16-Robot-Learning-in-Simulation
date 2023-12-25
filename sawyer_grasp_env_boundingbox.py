@@ -82,9 +82,12 @@ class GraspEnv(object):
         '''
         Return state containing arm joint positions/velocities & target position.
         '''
-        return np.array(self.agent.get_joint_positions() +  # list, dim=7
-                self.agent.get_joint_velocities() +  # list, dim=7
-                self.target.get_position())  # list, dim=3
+        # return np.array(self.agent.get_joint_positions() +  # list, dim=7
+        #         self.agent.get_joint_velocities() +  # list, dim=7
+        #         self.target.get_position())  # list, dim=3
+        return np.concatenate((self.agent.get_joint_positions(),  # list, dim=7
+                self.agent.get_joint_velocities(),  # list, dim=7
+                self.target.get_position()))  # list, dim=3
 
     def _is_holding(self):
         '''
