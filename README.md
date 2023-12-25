@@ -1,18 +1,33 @@
-# Chapter 16: Robot Learning in Simulation (Project 4)
+# Chapter 16: Robot Learning in Simulation (Project 4) (edited for New PyRep (4.1.0.3))
 ## Description:
 Example of Sawyer robot learning to reach the target with paralleled Soft Actor-Critic (SAC) algorithm, using PyRep for Sawyer robot simulation and game building. The environment is wrapped into OpenAI Gym format.
 <p align="center">
 <img src="https://github.com/deep-reinforcement-learning-book/Chapter16-Robot-Learning-in-Simulation/blob/master/figures/reacher.gif" width="40%">
 </p>
 
-## Dependencies:
-* [V-REP 3.6.2](http://www.coppeliarobotics.com/previousVersions)
-* [PyRep](https://github.com/deep-reinforcement-learning-book/PyRep)
+## Dependencies and Installation:
+### Install CoppeliaSim 
+```bash
+# Install CoppeliaSim 4.1.0 for Ubuntu 20.04
+# Refer to PyRep README for other versions
+export COPPELIASIM_ROOT=${HOME}/.local/bin/CoppeliaSim
+curl -O https://www.coppeliarobotics.com/files/CoppeliaSim_Edu_V4_1_0_Ubuntu20_04.tar.xz
+mkdir -p $COPPELIASIM_ROOT && tar -xf CoppeliaSim_Edu_V4_1_0_Ubuntu20_04.tar.xz -C $COPPELIASIM_ROOT --strip-components 1
+## Add environment variables into bashrc (or zshrc)
+echo "export COPPELIASIM_ROOT=$COPPELIASIM_ROOT
+export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$COPPELIASIM_ROOT
+export QT_QPA_PLATFORM_PLUGIN_PATH=\$COPPELIASIM_ROOT" >> ~/.bashrc
+```
+### Install PyRep
+```bash
+# Install PyRep
+git clone https://github.com/stepjam/PyRep.git .local/PyRep
+cd .local/PyRep
+pip install -r requirements.txt
+pip install .
+cd ../..
+```
 * PyTorch
-
-Note:
-* The later version of V-REP 3.6.2 is renamed CoppeliaSim after verison 4.0.0, which may have some incompatible issues with PyRep during the process of this project, so we suggest to use V-REP 3.6.2 [here](http://www.coppeliarobotics.com/previousVersions) and the maintained PyRep in our repository.
-* The official repository of PyRep is [here](https://github.com/stepjam/PyRep), but we maintain a stable version [here](https://github.com/deep-reinforcement-learning-book/PyRep) in our repository for supporting V-REP 3.6.2, please use the version we provide ([here](https://github.com/deep-reinforcement-learning-book/PyRep)) for avoiding unnecessary incompatibility.
 
 ## Contents:
 * `arms/`: object models of arms;
